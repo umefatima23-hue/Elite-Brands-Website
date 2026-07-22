@@ -1,6 +1,6 @@
 import { X } from "lucide-react";
 import { BRANDS, CATEGORIES } from "@/data/products";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/ui/input";
 
 export interface ShopFilterState {
   q: string;

@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Heart, Menu, Search, ShoppingBag, User } from "lucide-react";
 import { useState } from "react";
-import { Container } from "@/components/common/container";
+import { Container } from "@/common/container";
 import { primaryNav } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 import { useCart } from "@/stores/cart";

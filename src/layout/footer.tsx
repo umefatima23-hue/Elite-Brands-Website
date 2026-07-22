@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Container } from "@/components/common/container";
+import { Container } from "@/common/container";
 import { footerNav } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 import { Newsletter } from "./newsletter";

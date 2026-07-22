@@ -1,11 +1,11 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
-import { AppShell } from "@/components/layout/app-shell";
-import { Container } from "@/components/common/container";
-import { PageHeader } from "@/components/common/page-header";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { AppShell } from "@/layout/app-shell";
+import { Container } from "@/common/container";
+import { PageHeader } from "@/common/page-header";
+import { Input } from "@/ui/input";
+import { Label } from "@/ui/label";
 import { formatPrice } from "@/lib/format";
 import { useCart } from "@/stores/cart";
 import { whatsappUrl } from "@/lib/whatsapp";

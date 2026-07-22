@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Container } from "@/components/common/container";
+import { Container } from "@/common/container";
 import { BRANDS } from "@/data/products";
 
 export function FeaturedBrands() {

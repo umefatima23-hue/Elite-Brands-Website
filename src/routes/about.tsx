@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { AppShell } from "@/components/layout/app-shell";
-import { PageHeader } from "@/components/common/page-header";
-import { Container } from "@/components/common/container";
+import { AppShell } from "@/layout/app-shell";
+import { PageHeader } from "@/common/page-header";
+import { Container } from "@/common/container";
 import { buildMeta, canonical } from "@/lib/seo";
 
 export const Route = createFileRoute("/about")({

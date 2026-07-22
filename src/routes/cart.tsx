@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Minus, Plus, Trash2 } from "lucide-react";
-import { AppShell } from "@/components/layout/app-shell";
-import { Container } from "@/components/common/container";
-import { PageHeader } from "@/components/common/page-header";
-import { ProductImage } from "@/components/product/product-image";
+import { AppShell } from "@/layout/app-shell";
+import { Container } from "@/common/container";
+import { PageHeader } from "@/common/page-header";
+import { ProductImage } from "@/product/product-image";
 import { formatPrice } from "@/lib/format";
 import { useCart } from "@/stores/cart";
 import { buildMeta, canonical } from "@/lib/seo";

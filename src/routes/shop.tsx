@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { z } from "zod";
-import { AppShell } from "@/components/layout/app-shell";
-import { PageHeader } from "@/components/common/page-header";
-import { Container } from "@/components/common/container";
-import { ProductGrid } from "@/components/product/product-grid";
-import { ShopFilters, DEFAULT_FILTERS, type ShopFilterState } from "@/components/shop/shop-filters";
+import { AppShell } from "@/layout/app-shell";
+import { PageHeader } from "@/common/page-header";
+import { Container } from "@/common/container";
+import { ProductGrid } from "@/product/product-grid";
+import { ShopFilters, DEFAULT_FILTERS, type ShopFilterState } from "@/shop/shop-filters";
 import { PRODUCTS } from "@/data/products";
 import { discountPercent } from "@/lib/format";
 import { buildMeta, canonical } from "@/lib/seo";

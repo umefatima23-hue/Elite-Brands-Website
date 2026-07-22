@@ -1,5 +1,5 @@
 import { BadgeCheck, Truck, ShieldCheck, MessageCircle } from "lucide-react";
-import { Container } from "@/components/common/container";
+import { Container } from "@/common/container";
 
 const items = [
   { icon: BadgeCheck, title: "100% Original", desc: "Authentic articles, guaranteed." },

@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-import { Container } from "@/components/common/container";
-import { ProductGrid } from "@/components/product/product-grid";
+import { Container } from "@/common/container";
+import { ProductGrid } from "@/product/product-grid";
 import { PRODUCTS } from "@/data/products";
 
 export function NewArrivals() {

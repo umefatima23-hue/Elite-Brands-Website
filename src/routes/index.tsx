@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { AppShell } from "@/components/layout/app-shell";
-import { Hero } from "@/components/home/hero";
-import { TrustBar } from "@/components/home/trust-bar";
-import { FeaturedBrands } from "@/components/home/featured-brands";
-import { PremiumOutlet } from "@/components/home/premium-outlet";
-import { NewArrivals } from "@/components/home/new-arrivals";
+import { AppShell } from "@/layout/app-shell";
+import { Hero } from "@/home/hero";
+import { TrustBar } from "@/home/trust-bar";
+import { FeaturedBrands } from "@/home/featured-brands";
+import { PremiumOutlet } from "@/home/premium-outlet";
+import { NewArrivals } from "@/home/new-arrivals";
 import { siteConfig } from "@/config/site";
 import { buildMeta, canonical } from "@/lib/seo";
 

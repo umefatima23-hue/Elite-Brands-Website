@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { AppShell } from "@/components/layout/app-shell";
-import { PageHeader } from "@/components/common/page-header";
-import { Container } from "@/components/common/container";
-import { ProductGrid } from "@/components/product/product-grid";
+import { AppShell } from "@/layout/app-shell";
+import { PageHeader } from "@/common/page-header";
+import { Container } from "@/common/container";
+import { ProductGrid } from "@/product/product-grid";
 import { discountPercent } from "@/lib/format";
 import { PRODUCTS } from "@/data/products";
 import { buildMeta, canonical } from "@/lib/seo";

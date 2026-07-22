@@ -1,10 +1,10 @@
 import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
-import { AppShell } from "@/components/layout/app-shell";
-import { PageHeader } from "@/components/common/page-header";
-import { Container } from "@/components/common/container";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { AppShell } from "@/layout/app-shell";
+import { PageHeader } from "@/common/page-header";
+import { Container } from "@/common/container";
+import { Input } from "@/ui/input";
+import { Label } from "@/ui/label";
 import { buildMeta, canonical } from "@/lib/seo";
 
 const MODES: Record<string, { title: string; cta: string; alt: { text: string; label: string; href: string } }> = {
