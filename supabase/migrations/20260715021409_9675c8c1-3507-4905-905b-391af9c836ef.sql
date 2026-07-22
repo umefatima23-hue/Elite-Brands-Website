@@ -1,0 +1,1 @@
+REVOKE ALL ON FUNCTION public.wa_messages_after_insert() FROM PUBLIC, anon, authenticated;
