@@ -1,0 +1,15 @@
+name,slug,description,parent_slug,sort_order,featured
+New Arrivals,new-arrivals,"Latest additions across all brands and collections.",,1,true
+Printed Lawn,printed-lawn,"Lightweight printed lawn suits for everyday wear.",,2,true
+Luxury Lawn,luxury-lawn,"Premium embroidered lawn with fine detailing.",,3,true
+Unstitched,unstitched,"Unstitched fabric suits — 2, 3 and 4 piece.",,4,true
+Pret,pret,"Ready-to-wear eastern silhouettes.",,5,true
+Luxury Pret,luxury-pret,"Premium ready-to-wear formals and occasion wear.",,6,true
+Festive,festive,"Eid, wedding season and celebration edits.",,7,true
+Formals,formals,"Formal and semi-formal ensembles.",,8,false
+Bridal,bridal,"Bridal couture and heavy formals.",,9,false
+Winter,winter,"Khaddar, linen, karandi and wool suits.",,10,false
+Accessories,accessories,"Dupattas, stoles, clutches and jewellery.",,11,false
+Sale,sale,"Reduced price pieces across categories.",,99,true
+Two Piece,two-piece,"Unstitched two piece suits.",unstitched,1,false
+Three Piece,three-piece,"Unstitched three piece suits.",unstitched,2,false
