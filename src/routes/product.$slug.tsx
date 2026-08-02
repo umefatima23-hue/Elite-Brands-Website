@@ -6,7 +6,7 @@ import { AppShell } from "@/layout/app-shell";
 import { Container } from "@/common/container";
 import { ProductImage } from "@/product/product-image";
 import { ProductGrid } from "@/product/product-grid";
-import { getProductBySlug, getRelated } from "@/data/products";
+import { getProductBySlug, getRelated } from "@/lib/catalog";
 import { discountPercent, formatPrice, savedAmount } from "@/lib/format";
 import { whatsappProductMessage, whatsappUrl } from "@/lib/whatsapp";
 import { useCart } from "@/stores/cart";
@@ -14,10 +14,11 @@ import { buildMeta, canonical } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/product/$slug")({
-  loader: ({ params }) => {
-    const product = getProductBySlug(params.slug);
+  loader: async ({ params }) => {
+    const product = await getProductBySlug(params.slug);
     if (!product) throw notFound();
-    return { product };
+    const related = await getRelated(product);
+    return { product, related };
   },
   head: ({ loaderData, params }) => {
     if (!loaderData) {
@@ -38,11 +39,10 @@ export const Route = createFileRoute("/product/$slug")({
 });
 
 function ProductPage() {
-  const { product } = Route.useLoaderData();
+  const { product, related } = Route.useLoaderData();
   const [imgIdx, setImgIdx] = useState(0);
   const { add } = useCart();
   const [qty, setQty] = useState(1);
-  const related = getRelated(product);
   const discount = discountPercent(product.originalPrice, product.salePrice);
   const saved = savedAmount(product.originalPrice, product.salePrice);
 
@@ -50,9 +50,13 @@ function ProductPage() {
     <AppShell>
       <Container className="py-8 md:py-12">
         <nav aria-label="Breadcrumb" className="mb-6 text-xs text-muted-foreground">
-          <Link to="/" className="hover:text-foreground">Home</Link>
+          <Link to="/" className="hover:text-foreground">
+            Home
+          </Link>
           <span className="mx-1.5">/</span>
-          <Link to="/shop" className="hover:text-foreground">Shop</Link>
+          <Link to="/shop" className="hover:text-foreground">
+            Shop
+          </Link>
           <span className="mx-1.5">/</span>
           <span className="text-foreground">{product.name}</span>
         </nav>
@@ -60,7 +64,11 @@ function ProductPage() {
         <div className="grid gap-10 md:grid-cols-2">
           {/* Gallery */}
           <div>
-            <ProductImage hue={product.colorHue + imgIdx * 30} label={product.brand} aspect="aspect-[4/5]" />
+            <ProductImage
+              hue={product.colorHue + imgIdx * 30}
+              label={product.brand}
+              aspect="aspect-[4/5]"
+            />
             <div className="mt-3 grid grid-cols-3 gap-3">
               {product.images.map((img: string, i: number) => (
                 <button
@@ -73,7 +81,11 @@ function ProductPage() {
                   )}
                   aria-label={`View image ${i + 1}`}
                 >
-                  <ProductImage hue={product.colorHue + i * 30} label={`${i + 1}`} aspect="aspect-square" />
+                  <ProductImage
+                    hue={product.colorHue + i * 30}
+                    label={`${i + 1}`}
+                    aspect="aspect-square"
+                  />
                 </button>
               ))}
             </div>
@@ -86,7 +98,9 @@ function ProductPage() {
             <span className="gold-rule mt-4" />
 
             <div className="mt-5 flex items-baseline gap-3">
-              <span className="text-3xl font-semibold text-foreground">{formatPrice(product.salePrice)}</span>
+              <span className="text-3xl font-semibold text-foreground">
+                {formatPrice(product.salePrice)}
+              </span>
               {product.originalPrice > product.salePrice && (
                 <>
                   <span className="text-lg text-muted-foreground line-through">
@@ -102,7 +116,9 @@ function ProductPage() {
               <p className="mt-1 text-sm font-medium text-gold">You save {formatPrice(saved)}</p>
             )}
 
-            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">{product.description}</p>
+            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+              {product.description}
+            </p>
 
             <div className="mt-6 flex items-center gap-2 text-sm">
               <span
@@ -113,7 +129,8 @@ function ProductPage() {
                     : "bg-destructive/10 text-destructive",
                 )}
               >
-                <Check className="h-3 w-3" aria-hidden /> {product.inStock ? "In stock — ready to ship" : "Out of stock"}
+                <Check className="h-3 w-3" aria-hidden />{" "}
+                {product.inStock ? "In stock — ready to ship" : "Out of stock"}
               </span>
             </div>
 
@@ -122,7 +139,9 @@ function ProductPage() {
               <div>
                 <p className="eyebrow mb-2">Fabric</p>
                 <p className="text-sm text-foreground">{product.fabric}</p>
-                <p className="mt-1 text-xs text-muted-foreground">Category: {product.categoryLabel}</p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Category: {product.categoryLabel}
+                </p>
               </div>
               <div>
                 <p className="eyebrow mb-2">What's Included</p>
@@ -178,7 +197,9 @@ function ProductPage() {
             </div>
 
             <a
-              href={whatsappUrl(whatsappProductMessage(product.name, product.brand, `/product/${product.slug}`))}
+              href={whatsappUrl(
+                whatsappProductMessage(product.name, product.brand, `/product/${product.slug}`),
+              )}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-md bg-whatsapp px-5 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-whatsapp-foreground hover:opacity-95"

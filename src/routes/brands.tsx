@@ -2,25 +2,38 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { AppShell } from "@/layout/app-shell";
 import { PageHeader } from "@/common/page-header";
 import { Container } from "@/common/container";
-import { BRANDS, PRODUCTS } from "@/data/products";
+import { listBrands, listProducts } from "@/lib/catalog";
 import { buildMeta, canonical } from "@/lib/seo";
 
 export const Route = createFileRoute("/brands")({
+  loader: async () => {
+    const [brands, products] = await Promise.all([listBrands(), listProducts()]);
+    return { brands, products };
+  },
   head: () => ({
-    meta: buildMeta({ title: "Brands", description: "Shop by brand at Elite Brands.", path: "/brands" }),
+    meta: buildMeta({
+      title: "Brands",
+      description: "Shop by brand at Elite Brands.",
+      path: "/brands",
+    }),
     links: canonical("/brands"),
   }),
   component: BrandsPage,
 });
 
 function BrandsPage() {
+  const { brands, products } = Route.useLoaderData();
   return (
     <AppShell>
-      <PageHeader eyebrow="The houses" title="Our Brands" description="The most coveted names in Pakistani lawn — under one roof." />
+      <PageHeader
+        eyebrow="The houses"
+        title="Our Brands"
+        description="The most coveted names in Pakistani lawn — under one roof."
+      />
       <Container className="py-12">
         <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3">
-          {BRANDS.map((b) => {
-            const count = PRODUCTS.filter((p) => p.brandSlug === b.slug).length;
+          {brands.map((b) => {
+            const count = products.filter((p) => p.brandSlug === b.slug).length;
             return (
               <Link
                 key={b.slug}
@@ -35,9 +48,15 @@ function BrandsPage() {
                   }}
                 />
                 <div className="p-5">
-                  <p className="font-display text-2xl text-foreground group-hover:text-primary">{b.name}</p>
-                  <p className="mt-1 text-xs uppercase tracking-[0.14em] text-muted-foreground">{b.tagline}</p>
-                  <p className="mt-3 text-sm text-gold">{count} article{count === 1 ? "" : "s"} in stock →</p>
+                  <p className="font-display text-2xl text-foreground group-hover:text-primary">
+                    {b.name}
+                  </p>
+                  <p className="mt-1 text-xs uppercase tracking-[0.14em] text-muted-foreground">
+                    {b.tagline}
+                  </p>
+                  <p className="mt-3 text-sm text-gold">
+                    {count} article{count === 1 ? "" : "s"} in stock →
+                  </p>
                 </div>
               </Link>
             );

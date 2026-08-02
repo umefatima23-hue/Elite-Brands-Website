@@ -6,7 +6,7 @@ import { PageHeader } from "@/common/page-header";
 import { Container } from "@/common/container";
 import { ProductGrid } from "@/product/product-grid";
 import { ShopFilters, DEFAULT_FILTERS, type ShopFilterState } from "@/shop/shop-filters";
-import { PRODUCTS } from "@/data/products";
+import { listProducts } from "@/lib/catalog";
 import { discountPercent } from "@/lib/format";
 import { buildMeta, canonical } from "@/lib/seo";
 
@@ -18,10 +18,12 @@ const searchSchema = z.object({
 
 export const Route = createFileRoute("/shop")({
   validateSearch: searchSchema,
+  loader: async () => ({ products: await listProducts() }),
   head: () => ({
     meta: buildMeta({
       title: "Shop",
-      description: "Browse Pakistani unstitched printed lawn from Sana Safinaz, Gul Ahmed, Khaadi and more.",
+      description:
+        "Browse Pakistani unstitched printed lawn from Sana Safinaz, Gul Ahmed, Khaadi and more.",
       path: "/shop",
     }),
     links: canonical("/shop"),
@@ -30,6 +32,7 @@ export const Route = createFileRoute("/shop")({
 });
 
 function ShopPage() {
+  const { products } = Route.useLoaderData();
   const search = Route.useSearch();
   const [filters, setFilters] = useState<ShopFilterState>({
     ...DEFAULT_FILTERS,
@@ -39,7 +42,7 @@ function ShopPage() {
   });
 
   const filtered = useMemo(() => {
-    let list = [...PRODUCTS];
+    let list = [...products];
     if (filters.brand !== "all") list = list.filter((p) => p.brandSlug === filters.brand);
     if (filters.category !== "all") list = list.filter((p) => p.category === filters.category);
     if (filters.q.trim()) {
@@ -64,14 +67,19 @@ function ShopPage() {
     else if (filters.sort === "discount")
       list.sort(
         (a, b) =>
-          discountPercent(b.originalPrice, b.salePrice) - discountPercent(a.originalPrice, a.salePrice),
+          discountPercent(b.originalPrice, b.salePrice) -
+          discountPercent(a.originalPrice, a.salePrice),
       );
     return list;
-  }, [filters]);
+  }, [products, filters]);
 
   return (
     <AppShell>
-      <PageHeader eyebrow="Catalogue" title="Shop" description="Filter by brand, category, and price. Every article is 100% original." />
+      <PageHeader
+        eyebrow="Catalogue"
+        title="Shop"
+        description="Filter by brand, category, and price. Every article is 100% original."
+      />
       <Container className="py-10">
         <div className="grid gap-6 md:grid-cols-[280px_1fr]">
           <aside className="md:sticky md:top-24 md:self-start">
