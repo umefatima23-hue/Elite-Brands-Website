@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { AppShell } from "@/layout/app-shell";
 import { Container } from "@/common/container";
@@ -8,6 +8,7 @@ import { Input } from "@/ui/input";
 import { Label } from "@/ui/label";
 import { formatPrice } from "@/lib/format";
 import { useCart } from "@/stores/cart";
+import { createOrder } from "@/lib/orders";
 import { whatsappUrl } from "@/lib/whatsapp";
 import { buildMeta, canonical } from "@/lib/seo";
 
@@ -28,13 +29,17 @@ function CheckoutPage() {
   const total = subtotal + shipping;
   const navigate = useNavigate();
   const [submitting, setSubmitting] = useState(false);
+  const idempotencyKeyRef = useRef(crypto.randomUUID());
 
   if (detailedItems.length === 0) {
     return (
       <AppShell>
         <PageHeader eyebrow="Secure" title="Checkout" description="Your cart is empty." />
         <Container className="py-10 text-center">
-          <Link to="/shop" className="inline-flex items-center justify-center rounded-md bg-primary px-7 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary-foreground hover:bg-primary/90">
+          <Link
+            to="/shop"
+            className="inline-flex items-center justify-center rounded-md bg-primary px-7 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary-foreground hover:bg-primary/90"
+          >
             Browse Products
           </Link>
         </Container>
@@ -42,21 +47,44 @@ function CheckoutPage() {
     );
   }
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (submitting) return;
     setSubmitting(true);
+
     const form = new FormData(e.currentTarget);
     const name = String(form.get("name") || "");
+    const email = String(form.get("email") || "");
     const phone = String(form.get("phone") || "");
+    const address = String(form.get("address") || "");
+    const city = String(form.get("city") || "");
+    const postal = String(form.get("postal") || "");
+    const notes = String(form.get("notes") || "");
 
-    // Placeholder: order confirmation via WhatsApp (backend hook coming later)
-    setTimeout(() => {
-      toast.success("Order placed! We'll confirm shortly via WhatsApp.");
-      const msg = `New Order from ${name} (${phone}) — Total ${formatPrice(total)}. Items: ${detailedItems.map((i) => `${i.product.name} x${i.quantity}`).join(", ")}`;
-      window.open(whatsappUrl(msg), "_blank");
-      clear();
-      navigate({ to: "/" });
-    }, 700);
+    const result = await createOrder({
+      customer: { fullName: name, email: email || undefined, phone },
+      shipping: { address, city, postalCode: postal || undefined, notes: notes || undefined },
+      items: detailedItems.map(({ product, quantity }) => ({
+        productId: product.id,
+        name: product.name,
+        brand: product.brand,
+        quantity,
+        unitPrice: product.salePrice,
+      })),
+      idempotencyKey: idempotencyKeyRef.current,
+    });
+
+    if (!result.success) {
+      toast.error(result.error.message);
+      setSubmitting(false);
+      return;
+    }
+
+    toast.success(`Order ${result.order.orderNumber} placed! We'll confirm shortly via WhatsApp.`);
+    const msg = `New Order ${result.order.orderNumber} from ${name} (${phone}) — Total ${formatPrice(total)}. Items: ${detailedItems.map((i) => `${i.product.name} x${i.quantity}`).join(", ")}`;
+    window.open(whatsappUrl(msg), "_blank");
+    clear();
+    navigate({ to: "/" });
   };
 
   return (
@@ -91,7 +119,8 @@ function CheckoutPage() {
                 </div>
               </label>
               <p className="rounded-md border border-dashed border-border bg-background p-4 text-xs text-muted-foreground">
-                Order confirmation is sent via WhatsApp. Card & bank transfer options arrive in the next release.
+                Order confirmation is sent via WhatsApp. Card & bank transfer options arrive in the
+                next release.
               </p>
             </Section>
           </div>
@@ -117,7 +146,9 @@ function CheckoutPage() {
               </div>
               <div className="flex justify-between">
                 <dt className="text-muted-foreground">Shipping</dt>
-                <dd className="font-medium text-foreground">{shipping === 0 ? "Free" : formatPrice(shipping)}</dd>
+                <dd className="font-medium text-foreground">
+                  {shipping === 0 ? "Free" : formatPrice(shipping)}
+                </dd>
               </div>
               <div className="flex justify-between border-t border-border pt-3 text-base">
                 <dt className="font-semibold text-foreground">Total</dt>
