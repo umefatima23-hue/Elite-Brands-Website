@@ -12,6 +12,9 @@ Test scenarios for the admin interface, covering the admin dashboard, product/br
 - Product CRUD via the admin UI
 - Brand and category CRUD via the admin UI
 - Order status management
+- Customer visibility (read-only)
+- Analytics view
+- Settings area (if implemented)
 - Mobile-responsive admin layout behavior
 
 ## Test Scenarios
@@ -43,6 +46,23 @@ Test scenarios for the admin interface, covering the admin dashboard, product/br
 - [ ] Admin can filter/search orders (by status, customer, date)
 - [ ] Admin can update an order's status
 - [ ] Order status changes are reflected in the customer-facing order history
+
+### Customer Visibility
+
+- [ ] Admin can view a list of registered customers
+- [ ] Admin can view a customer's order history from their profile
+- [ ] Sensitive account fields (password, auth internals) are not exposed in the admin customer view — needs verification against current implementation
+
+### Analytics
+
+- [ ] Admin analytics view loads without error and displays summary metrics
+- [ ] Metrics reflect actual order/catalog data (spot-check against a known test order) — needs verification against current implementation for exact metrics shown
+- [ ] Analytics view degrades gracefully (loading/empty state) when there is no data yet
+
+### Settings
+
+- [ ] Admin can access the settings area, if implemented — needs verification against current implementation, since the existence and scope of a settings area was unconfirmed at the time this documentation was written (see `../admin-guide/settings.md`)
+- [ ] Non-admin users cannot access settings
 
 ### Mobile Admin UI (`feature/mobile1-admin-ui`)
 

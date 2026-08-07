@@ -15,8 +15,8 @@ General coding standards appropriate for a React + TypeScript + TailwindCSS + sh
 ## React
 
 - Prefer function components with hooks; avoid class components.
-- Keep components focused — extract shared logic into custom hooks (`src/hooks/`) rather than duplicating across components.
-- Co-locate component-specific styles/logic; keep genuinely shared UI in `src/components/`.
+- Keep components focused — extract shared logic into custom hooks rather than duplicating across components. (Referenced elsewhere in this doc set as living in `src/hooks/` — needs verification against current implementation.)
+- Co-locate component-specific styles/logic; keep genuinely shared UI in a shared components location (referenced elsewhere as `src/components/` — needs verification against current implementation).
 
 ## Styling (TailwindCSS + shadcn/ui)
 

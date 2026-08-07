@@ -37,6 +37,12 @@ Baseline acceptance criteria for the core features of the Elite Brands Website. 
 
 - Given an admin updates an order's status, when saved, then the new status is reflected both in the admin view and the customer's order history.
 
+## Admin — Customers, Analytics, and Settings
+
+- Given an admin views the customers list, when the page loads, then registered customers are shown with basic profile info and no sensitive account fields.
+- Given an admin views the analytics dashboard, when the page loads, then summary metrics are shown, reflecting actual order/catalog data — needs verification against current implementation for exact metrics.
+- Given an admin views settings, when the page loads, then settings are shown and editable only by admin users — needs verification against current implementation, since the existence and scope of a settings area was unconfirmed at the time this documentation was written.
+
 ## Related Documentation
 
 - `manual-test-cases.md`
