@@ -61,7 +61,7 @@ To test admin features locally, you'll need a Supabase user account flagged as a
 
 ## Getting Help
 
-- Check `docs/` first — this documentation set is the intended source of truth for onboarding, architecture, testing, and operations.
+- Check `README.md` (the documentation index) first — this documentation set is the intended source of truth for onboarding, architecture, testing, and operations.
 - Where this documentation says "This should match the project's implementation," that indicates an area not yet verified against the real code — ask a teammate and consider updating the doc once confirmed.
 
 ## Related Documentation

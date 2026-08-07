@@ -45,4 +45,4 @@ For larger efforts like `feature/mobile1-admin-ui` that may span multiple PRs or
 
 - `Git-Workflow.md`
 - `Versioning-Guide.md`
-- `../operations/release-process.md`
+- `operations/release-process.md`

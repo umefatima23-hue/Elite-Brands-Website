@@ -40,7 +40,7 @@ See [docs/developer/Folder-Structure.md](docs/developer/Folder-Structure.md).
 
 ## Documentation
 
-Full project documentation lives in [docs/](docs/), including:
+Full project documentation lives in [docs/](docs/) — start at [docs/README.md](docs/README.md) for the full index. Highlights:
 
 - [API documentation](docs/api/)
 - [Testing guides](docs/testing/)
@@ -66,6 +66,7 @@ Confirm actual license, if any.
 
 ## Related Documentation
 
+- `README.md` — full documentation index (start here)
 - `Developer-Onboarding.md`
 - `Git-Workflow.md`
 - `developer/Folder-Structure.md`

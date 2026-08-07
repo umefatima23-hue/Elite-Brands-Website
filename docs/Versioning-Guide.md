@@ -27,18 +27,18 @@ git push origin v1.2.0
 
 Many Vercel-deployed SPAs skip formal semantic versioning entirely and rely on:
 
-- Vercel's deployment history (each deploy is inherently addressable/rollback-able) — see `../operations/rollback-guide.md`
+- Vercel's deployment history (each deploy is inherently addressable/rollback-able) — see `operations/rollback-guide.md`
 - Git commit SHAs as the de facto version reference
 
 If this is the project's actual current practice, this document should be updated to reflect that instead of prescribing semantic versioning. **This should match the project's implementation.**
 
 ## Database Schema Versioning
 
-Independent of application versioning, Supabase schema changes should be tracked via sequential migration files (see `developer/Supabase-Patterns.md` and `../api/database-overview.md`), which serve as the effective "version history" of the database schema regardless of whether the application itself is formally versioned.
+Independent of application versioning, Supabase schema changes should be tracked via sequential migration files (see `developer/Supabase-Patterns.md` and `api/database-overview.md`), which serve as the effective "version history" of the database schema regardless of whether the application itself is formally versioned.
 
 ## Related Documentation
 
 - `Git-Workflow.md`
 - `Branch-Strategy.md`
-- `../operations/release-process.md`
-- `../operations/rollback-guide.md`
+- `operations/release-process.md`
+- `operations/rollback-guide.md`

@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document outlines candidate Phase 2 initiatives for the Elite Brands Website, building on the current catalog/orders/admin foundation described in `docs/api/`.
+This document outlines candidate Phase 2 initiatives for the Elite Brands Website, building on the current catalog/orders/admin foundation described in `../api/`.
 
 > These are planning placeholders, not commitments. Actual prioritization should match the project's roadmap as defined by the team/product owner.
 
