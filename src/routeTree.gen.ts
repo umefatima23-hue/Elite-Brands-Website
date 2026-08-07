@@ -39,6 +39,10 @@ import { Route as AdminBrandsRouteImport } from './routes/admin.brands'
 import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
 import { Route as AdminProductsIndexRouteImport } from './routes/admin.products.index'
 import { Route as AdminProductsNewRouteImport } from './routes/admin.products.new'
+import { Route as AdminCategoriesNewRouteImport } from './routes/admin.categories.new'
+import { Route as AdminCategoriesIdRouteImport } from './routes/admin.categories.$id'
+import { Route as AdminBrandsNewRouteImport } from './routes/admin.brands.new'
+import { Route as AdminBrandsIdRouteImport } from './routes/admin.brands.$id'
 
 const WishlistRoute = WishlistRouteImport.update({
   id: '/wishlist',
@@ -190,6 +194,26 @@ const AdminProductsNewRoute = AdminProductsNewRouteImport.update({
   path: '/new',
   getParentRoute: () => AdminProductsRoute,
 } as any)
+const AdminCategoriesNewRoute = AdminCategoriesNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => AdminCategoriesRoute,
+} as any)
+const AdminCategoriesIdRoute = AdminCategoriesIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AdminCategoriesRoute,
+} as any)
+const AdminBrandsNewRoute = AdminBrandsNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => AdminBrandsRoute,
+} as any)
+const AdminBrandsIdRoute = AdminBrandsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AdminBrandsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -208,8 +232,8 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/wishlist': typeof WishlistRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
-  '/admin/brands': typeof AdminBrandsRoute
-  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/brands': typeof AdminBrandsRouteWithChildren
+  '/admin/categories': typeof AdminCategoriesRouteWithChildren
   '/admin/coupons': typeof AdminCouponsRoute
   '/admin/customers': typeof AdminCustomersRoute
   '/admin/homepage': typeof AdminHomepageRoute
@@ -220,6 +244,10 @@ export interface FileRoutesByFullPath {
   '/policies/$slug': typeof PoliciesSlugRoute
   '/product/$slug': typeof ProductSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/admin/brands/$id': typeof AdminBrandsIdRoute
+  '/admin/brands/new': typeof AdminBrandsNewRoute
+  '/admin/categories/$id': typeof AdminCategoriesIdRoute
+  '/admin/categories/new': typeof AdminCategoriesNewRoute
   '/admin/products/new': typeof AdminProductsNewRoute
   '/admin/products/': typeof AdminProductsIndexRoute
 }
@@ -239,8 +267,8 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/wishlist': typeof WishlistRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
-  '/admin/brands': typeof AdminBrandsRoute
-  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/brands': typeof AdminBrandsRouteWithChildren
+  '/admin/categories': typeof AdminCategoriesRouteWithChildren
   '/admin/coupons': typeof AdminCouponsRoute
   '/admin/customers': typeof AdminCustomersRoute
   '/admin/homepage': typeof AdminHomepageRoute
@@ -250,6 +278,10 @@ export interface FileRoutesByTo {
   '/policies/$slug': typeof PoliciesSlugRoute
   '/product/$slug': typeof ProductSlugRoute
   '/admin': typeof AdminIndexRoute
+  '/admin/brands/$id': typeof AdminBrandsIdRoute
+  '/admin/brands/new': typeof AdminBrandsNewRoute
+  '/admin/categories/$id': typeof AdminCategoriesIdRoute
+  '/admin/categories/new': typeof AdminCategoriesNewRoute
   '/admin/products/new': typeof AdminProductsNewRoute
   '/admin/products': typeof AdminProductsIndexRoute
 }
@@ -271,8 +303,8 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/wishlist': typeof WishlistRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
-  '/admin/brands': typeof AdminBrandsRoute
-  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/brands': typeof AdminBrandsRouteWithChildren
+  '/admin/categories': typeof AdminCategoriesRouteWithChildren
   '/admin/coupons': typeof AdminCouponsRoute
   '/admin/customers': typeof AdminCustomersRoute
   '/admin/homepage': typeof AdminHomepageRoute
@@ -283,6 +315,10 @@ export interface FileRoutesById {
   '/policies/$slug': typeof PoliciesSlugRoute
   '/product/$slug': typeof ProductSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/admin/brands/$id': typeof AdminBrandsIdRoute
+  '/admin/brands/new': typeof AdminBrandsNewRoute
+  '/admin/categories/$id': typeof AdminCategoriesIdRoute
+  '/admin/categories/new': typeof AdminCategoriesNewRoute
   '/admin/products/new': typeof AdminProductsNewRoute
   '/admin/products/': typeof AdminProductsIndexRoute
 }
@@ -317,6 +353,10 @@ export interface FileRouteTypes {
     | '/policies/$slug'
     | '/product/$slug'
     | '/admin/'
+    | '/admin/brands/$id'
+    | '/admin/brands/new'
+    | '/admin/categories/$id'
+    | '/admin/categories/new'
     | '/admin/products/new'
     | '/admin/products/'
   fileRoutesByTo: FileRoutesByTo
@@ -347,6 +387,10 @@ export interface FileRouteTypes {
     | '/policies/$slug'
     | '/product/$slug'
     | '/admin'
+    | '/admin/brands/$id'
+    | '/admin/brands/new'
+    | '/admin/categories/$id'
+    | '/admin/categories/new'
     | '/admin/products/new'
     | '/admin/products'
   id:
@@ -379,6 +423,10 @@ export interface FileRouteTypes {
     | '/policies/$slug'
     | '/product/$slug'
     | '/admin/'
+    | '/admin/brands/$id'
+    | '/admin/brands/new'
+    | '/admin/categories/$id'
+    | '/admin/categories/new'
     | '/admin/products/new'
     | '/admin/products/'
   fileRoutesById: FileRoutesById
@@ -616,8 +664,64 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminProductsNewRouteImport
       parentRoute: typeof AdminProductsRoute
     }
+    '/admin/categories/new': {
+      id: '/admin/categories/new'
+      path: '/new'
+      fullPath: '/admin/categories/new'
+      preLoaderRoute: typeof AdminCategoriesNewRouteImport
+      parentRoute: typeof AdminCategoriesRoute
+    }
+    '/admin/categories/$id': {
+      id: '/admin/categories/$id'
+      path: '/$id'
+      fullPath: '/admin/categories/$id'
+      preLoaderRoute: typeof AdminCategoriesIdRouteImport
+      parentRoute: typeof AdminCategoriesRoute
+    }
+    '/admin/brands/new': {
+      id: '/admin/brands/new'
+      path: '/new'
+      fullPath: '/admin/brands/new'
+      preLoaderRoute: typeof AdminBrandsNewRouteImport
+      parentRoute: typeof AdminBrandsRoute
+    }
+    '/admin/brands/$id': {
+      id: '/admin/brands/$id'
+      path: '/$id'
+      fullPath: '/admin/brands/$id'
+      preLoaderRoute: typeof AdminBrandsIdRouteImport
+      parentRoute: typeof AdminBrandsRoute
+    }
   }
 }
+
+interface AdminBrandsRouteChildren {
+  AdminBrandsIdRoute: typeof AdminBrandsIdRoute
+  AdminBrandsNewRoute: typeof AdminBrandsNewRoute
+}
+
+const AdminBrandsRouteChildren: AdminBrandsRouteChildren = {
+  AdminBrandsIdRoute: AdminBrandsIdRoute,
+  AdminBrandsNewRoute: AdminBrandsNewRoute,
+}
+
+const AdminBrandsRouteWithChildren = AdminBrandsRoute._addFileChildren(
+  AdminBrandsRouteChildren,
+)
+
+interface AdminCategoriesRouteChildren {
+  AdminCategoriesIdRoute: typeof AdminCategoriesIdRoute
+  AdminCategoriesNewRoute: typeof AdminCategoriesNewRoute
+}
+
+const AdminCategoriesRouteChildren: AdminCategoriesRouteChildren = {
+  AdminCategoriesIdRoute: AdminCategoriesIdRoute,
+  AdminCategoriesNewRoute: AdminCategoriesNewRoute,
+}
+
+const AdminCategoriesRouteWithChildren = AdminCategoriesRoute._addFileChildren(
+  AdminCategoriesRouteChildren,
+)
 
 interface AdminProductsRouteChildren {
   AdminProductsNewRoute: typeof AdminProductsNewRoute
@@ -635,8 +739,8 @@ const AdminProductsRouteWithChildren = AdminProductsRoute._addFileChildren(
 
 interface AdminRouteChildren {
   AdminAnalyticsRoute: typeof AdminAnalyticsRoute
-  AdminBrandsRoute: typeof AdminBrandsRoute
-  AdminCategoriesRoute: typeof AdminCategoriesRoute
+  AdminBrandsRoute: typeof AdminBrandsRouteWithChildren
+  AdminCategoriesRoute: typeof AdminCategoriesRouteWithChildren
   AdminCouponsRoute: typeof AdminCouponsRoute
   AdminCustomersRoute: typeof AdminCustomersRoute
   AdminHomepageRoute: typeof AdminHomepageRoute
@@ -648,8 +752,8 @@ interface AdminRouteChildren {
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminAnalyticsRoute: AdminAnalyticsRoute,
-  AdminBrandsRoute: AdminBrandsRoute,
-  AdminCategoriesRoute: AdminCategoriesRoute,
+  AdminBrandsRoute: AdminBrandsRouteWithChildren,
+  AdminCategoriesRoute: AdminCategoriesRouteWithChildren,
   AdminCouponsRoute: AdminCouponsRoute,
   AdminCustomersRoute: AdminCustomersRoute,
   AdminHomepageRoute: AdminHomepageRoute,
