@@ -4,12 +4,14 @@ import { useState } from "react";
 import { Container } from "@/common/container";
 import { primaryNav } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
+import { useAuth } from "@/stores/auth";
 import { useCart } from "@/stores/cart";
 import { MobileNav } from "./mobile-nav";
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { count } = useCart();
+  const { user } = useAuth();
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70">
@@ -24,7 +26,9 @@ export function Header() {
         </button>
 
         <Link to="/" className="flex items-baseline gap-2" aria-label={siteConfig.name}>
-          <span className="font-display text-2xl md:text-3xl tracking-tight text-foreground">Elite</span>
+          <span className="font-display text-2xl md:text-3xl tracking-tight text-foreground">
+            Elite
+          </span>
           <span className="font-display text-2xl md:text-3xl tracking-tight text-gold">Brands</span>
         </Link>
 
@@ -43,7 +47,12 @@ export function Header() {
 
         <div className="ml-auto flex items-center gap-1">
           <IconLink label="Search" href="/shop" icon={<Search className="h-5 w-5" />} />
-          <IconLink label="Account" href="/auth/login" icon={<User className="h-5 w-5" />} />
+          <IconLink
+            label={user ? "Account, signed in" : "Account"}
+            href={user ? "/account" : "/auth/login"}
+            icon={<User className="h-5 w-5" />}
+            indicator={Boolean(user)}
+          />
           <IconLink label="Wishlist" href="/wishlist" icon={<Heart className="h-5 w-5" />} />
           <Link
             to="/cart"
@@ -68,14 +77,27 @@ export function Header() {
   );
 }
 
-function IconLink({ label, href, icon }: { label: string; href: string; icon: React.ReactNode }) {
+function IconLink({
+  label,
+  href,
+  icon,
+  indicator = false,
+}: {
+  label: string;
+  href: string;
+  icon: React.ReactNode;
+  indicator?: boolean;
+}) {
   return (
     <Link
       to={href}
       aria-label={label}
-      className="inline-flex h-10 w-10 items-center justify-center rounded-md text-foreground/80 transition-colors hover:bg-accent hover:text-foreground"
+      className="relative inline-flex h-10 w-10 items-center justify-center rounded-md text-foreground/80 transition-colors hover:bg-accent hover:text-foreground"
     >
       {icon}
+      {indicator && (
+        <span aria-hidden className="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-gold" />
+      )}
     </Link>
   );
 }
