@@ -448,6 +448,26 @@ const createOrderServerFn = createServerFn({ method: "POST" })
         };
       }
 
+      // Record the creation event on the real order_events timeline. The DB's own
+      // orders_apply_inventory_transition() trigger only fires BEFORE UPDATE (see
+      // migration 20260712075946), so it never logs this initial INSERT itself —
+      // without this, every order's Admin Orders timeline would stay empty forever.
+      // event_type is free-form TEXT (no enum); "order_created" mirrors the naming
+      // style of the trigger's own "status_changed" value. from_status is null
+      // (nothing preceded creation); to_status uses the order's real persisted
+      // status rather than assuming a literal. Best-effort: a logging failure here
+      // must not fail a checkout that already succeeded.
+      const { error: eventError } = await supabaseAdmin.from("order_events").insert({
+        order_id: orderRow.id,
+        event_type: "order_created",
+        from_status: null,
+        to_status: orderRow.status,
+        message: "Order placed by customer.",
+      });
+      if (eventError) {
+        console.error("[orders] failed to insert initial order_events row:", eventError.message);
+      }
+
       return { success: true, order: mapOrderRow(orderRow) };
     } catch (err) {
       console.error("[orders] createOrder unexpected error:", err);
