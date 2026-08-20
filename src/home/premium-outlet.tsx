@@ -19,10 +19,7 @@ export function PremiumOutlet() {
         <div className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="eyebrow text-gold">Save up to 60%</p>
-            <h2
-              id="premium-outlet-heading"
-              className="mt-2 text-3xl md:text-4xl text-foreground"
-            >
+            <h2 id="premium-outlet-heading" className="mt-2 text-3xl md:text-4xl text-foreground">
               Premium Outlet
             </h2>
             <span className="gold-rule mt-4" />

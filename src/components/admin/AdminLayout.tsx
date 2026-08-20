@@ -60,8 +60,7 @@ function NavList({ onNavigate }: { onNavigate?: () => void }) {
     <nav aria-label="Admin" className="flex flex-1 flex-col gap-1 px-3">
       {nav.map((item) => {
         const active =
-          pathname === item.to ||
-          (item.to !== "/admin" && pathname.startsWith(item.to + "/"));
+          pathname === item.to || (item.to !== "/admin" && pathname.startsWith(item.to + "/"));
         const Icon = item.icon;
         return (
           <Link
@@ -210,7 +209,9 @@ export function AdminLayout({
                     <p className="mt-2 max-w-2xl text-sm text-muted-foreground">{description}</p>
                   )}
                 </div>
-                {actions && <div className="flex shrink-0 flex-wrap items-center gap-2">{actions}</div>}
+                {actions && (
+                  <div className="flex shrink-0 flex-wrap items-center gap-2">{actions}</div>
+                )}
               </div>
 
               <div className="divider-gold mt-6 opacity-60" />

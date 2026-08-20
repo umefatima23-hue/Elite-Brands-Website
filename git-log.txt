@@ -1,0 +1,20 @@
+b7cfc90 fix(orders): create initial order timeline event
+fe6ba4e feat(admin): add Settings module (site_settings)
+ed4f591 fix(auth): wire real Supabase Auth into the UI
+34be86a feat(admin): add Orders management module
+2373693 docs: finalize admin testing coverage
+7b8df9c feat(admin): add Customers management module
+f22d3bf feat(admin): add Orders module
+a747b9a docs: audit and improve documentation
+b34fe9b docs: update developer and project documentation
+e7093b0 feat(admin): add Brands & Categories CRUD
+2f44cf2 docs: add project documentation suite
+ef392bc docs: add production deployment assets
+d0c1619 feat(admin): add admin foundation
+5419c57 feat(orders): add Supabase order persistence
+860dfbf feat(catalog): wire Supabase catalog
+6ccadcf Add merchandising and business asset documentation
+4cfeb34 Add launch marketing content
+8818a99 Add catalog assets and launch readiness documentation
+334bb48 Add production marketing assets
+1004ea3 feat(admin): add premium admin dashboard UI

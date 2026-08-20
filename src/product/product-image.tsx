@@ -18,11 +18,7 @@ export function ProductImage({
   const bg = `linear-gradient(135deg, oklch(0.9 0.06 ${hue}) 0%, oklch(0.75 0.09 ${hue + 20}) 55%, oklch(0.55 0.11 ${hue + 40}) 100%)`;
   return (
     <div
-      className={cn(
-        "relative overflow-hidden rounded-md bg-muted",
-        aspect,
-        className,
-      )}
+      className={cn("relative overflow-hidden rounded-md bg-muted", aspect, className)}
       style={{ backgroundImage: bg }}
       aria-label={label}
       role="img"

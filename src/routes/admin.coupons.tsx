@@ -6,13 +6,7 @@ import { StatusBadge, EmptyState } from "@/components/admin/ui";
 import { Button } from "@/ui/button";
 import { Input } from "@/ui/input";
 import { Label } from "@/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/ui/select";
 import {
   Dialog,
   DialogContent,
@@ -36,10 +30,34 @@ export const Route = createFileRoute("/admin/coupons")({
 });
 
 const coupons = [
-  { code: "PRIVATE20", type: "20% off", uses: "128 / 500", expires: "Dec 31, 2026", status: "active" as const },
-  { code: "NOIR100", type: "€100 off", uses: "42 / 200", expires: "Sep 15, 2026", status: "active" as const },
-  { code: "WELCOME10", type: "10% off", uses: "1,204 / ∞", expires: "—", status: "active" as const },
-  { code: "SUMMER25", type: "25% off", uses: "890 / 890", expires: "Jul 01, 2026", status: "expired" as const },
+  {
+    code: "PRIVATE20",
+    type: "20% off",
+    uses: "128 / 500",
+    expires: "Dec 31, 2026",
+    status: "active" as const,
+  },
+  {
+    code: "NOIR100",
+    type: "€100 off",
+    uses: "42 / 200",
+    expires: "Sep 15, 2026",
+    status: "active" as const,
+  },
+  {
+    code: "WELCOME10",
+    type: "10% off",
+    uses: "1,204 / ∞",
+    expires: "—",
+    status: "active" as const,
+  },
+  {
+    code: "SUMMER25",
+    type: "25% off",
+    uses: "890 / 890",
+    expires: "Jul 01, 2026",
+    status: "expired" as const,
+  },
 ];
 
 function CouponsPage() {
@@ -70,7 +88,9 @@ function CouponsPage() {
                 <div className="grid gap-2">
                   <Label>Type</Label>
                   <Select defaultValue="percent">
-                    <SelectTrigger><SelectValue /></SelectTrigger>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="percent">Percentage</SelectItem>
                       <SelectItem value="fixed">Fixed amount</SelectItem>
@@ -95,7 +115,9 @@ function CouponsPage() {
               </div>
             </div>
             <DialogFooter>
-              <Button variant="outline" onClick={() => setOpen(false)}>Cancel</Button>
+              <Button variant="outline" onClick={() => setOpen(false)}>
+                Cancel
+              </Button>
               <Button className="bg-gradient-gold text-gold-foreground shadow-luxe">Create</Button>
             </DialogFooter>
           </DialogContent>
@@ -103,7 +125,11 @@ function CouponsPage() {
       }
     >
       {coupons.length === 0 ? (
-        <EmptyState icon={Ticket} title="No coupons yet" description="Design your first private offer." />
+        <EmptyState
+          icon={Ticket}
+          title="No coupons yet"
+          description="Design your first private offer."
+        />
       ) : (
         <div className="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-luxe">
           <div className="hidden grid-cols-[1.2fr_1fr_1fr_1fr_0.8fr] items-center gap-4 border-b border-border bg-secondary/60 px-4 py-3 text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground md:grid">
@@ -118,11 +144,15 @@ function CouponsPage() {
               key={c.code}
               className="grid grid-cols-[1fr_auto] items-center gap-4 border-b border-border px-4 py-4 last:border-b-0 hover:bg-secondary/40 md:grid-cols-[1.2fr_1fr_1fr_1fr_0.8fr]"
             >
-              <span className="font-mono text-sm font-semibold tracking-wider text-gold-deep">{c.code}</span>
+              <span className="font-mono text-sm font-semibold tracking-wider text-gold-deep">
+                {c.code}
+              </span>
               <span className="hidden text-sm text-foreground md:inline">{c.type}</span>
               <span className="hidden text-sm text-muted-foreground md:inline">{c.uses}</span>
               <span className="hidden text-sm text-muted-foreground md:inline">{c.expires}</span>
-              <span className="md:col-auto"><StatusBadge status={c.status} /></span>
+              <span className="md:col-auto">
+                <StatusBadge status={c.status} />
+              </span>
             </div>
           ))}
         </div>

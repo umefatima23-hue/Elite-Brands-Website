@@ -19,8 +19,7 @@ export function buildMeta({
   image = siteConfig.ogImage,
   type = "website",
 }: MetaInput) {
-  const fullTitle =
-    title === siteConfig.name ? siteConfig.name : `${title} — ${siteConfig.name}`;
+  const fullTitle = title === siteConfig.name ? siteConfig.name : `${title} — ${siteConfig.name}`;
   const meta: Array<Record<string, string>> = [
     { title: fullTitle },
     { name: "description", content: description },

@@ -6,13 +6,7 @@ import { Button } from "@/ui/button";
 import { Input } from "@/ui/input";
 import { Label } from "@/ui/label";
 import { Textarea } from "@/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/ui/select";
 import { Switch } from "@/ui/switch";
 import { Separator } from "@/ui/separator";
 
@@ -41,7 +35,9 @@ function ProductEditor() {
               <ArrowLeft className="mr-1 h-4 w-4" /> Back
             </Link>
           </Button>
-          <Button variant="outline" className="border-foreground/20">Save draft</Button>
+          <Button variant="outline" className="border-foreground/20">
+            Save draft
+          </Button>
           <Button className="bg-gradient-gold text-gold-foreground shadow-luxe hover:opacity-95">
             <Save className="mr-1 h-4 w-4" /> Publish
           </Button>
@@ -58,13 +54,19 @@ function ProductEditor() {
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="desc">Description</Label>
-                <Textarea id="desc" rows={6} placeholder="A refined description that tells the story of this piece…" />
+                <Textarea
+                  id="desc"
+                  rows={6}
+                  placeholder="A refined description that tells the story of this piece…"
+                />
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="grid gap-2">
                   <Label>Brand</Label>
                   <Select>
-                    <SelectTrigger><SelectValue placeholder="Choose brand" /></SelectTrigger>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Choose brand" />
+                    </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="noir">Maison Noir</SelectItem>
                       <SelectItem value="rive">Rive Blanche</SelectItem>
@@ -75,7 +77,9 @@ function ProductEditor() {
                 <div className="grid gap-2">
                   <Label>Category</Label>
                   <Select>
-                    <SelectTrigger><SelectValue placeholder="Choose category" /></SelectTrigger>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Choose category" />
+                    </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="outerwear">Outerwear</SelectItem>
                       <SelectItem value="tailoring">Tailoring</SelectItem>
@@ -186,7 +190,9 @@ function ProductEditor() {
           <SectionCard title="Status">
             <div className="grid gap-3">
               <Select defaultValue="draft">
-                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="draft">Draft</SelectItem>
                   <SelectItem value="published">Published</SelectItem>

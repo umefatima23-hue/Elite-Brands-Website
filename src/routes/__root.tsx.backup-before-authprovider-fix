@@ -14,7 +14,6 @@ import { siteConfig } from "../config/site";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CartProvider } from "../stores/cart";
 import { WishlistProvider } from "../stores/wishlist";
-import { AuthProvider } from "../stores/auth";
 import { Toaster } from "sonner";
 
 function NotFoundComponent() {
@@ -144,14 +143,12 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <CartProvider>
-          <WishlistProvider>
-            <Outlet />
-            <Toaster position="top-center" richColors />
-          </WishlistProvider>
-        </CartProvider>
-      </AuthProvider>
+      <CartProvider>
+        <WishlistProvider>
+          <Outlet />
+          <Toaster position="top-center" richColors />
+        </WishlistProvider>
+      </CartProvider>
     </QueryClientProvider>
   );
 }

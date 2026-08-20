@@ -13,9 +13,7 @@ export function Footer() {
             <span className="font-display text-2xl">
               Elite <span className="text-gold">Brands</span>
             </span>
-            <p className="mt-3 text-sm text-muted-foreground max-w-xs">
-              {siteConfig.description}
-            </p>
+            <p className="mt-3 text-sm text-muted-foreground max-w-xs">{siteConfig.description}</p>
             <span className="gold-rule mt-5" />
           </div>
 

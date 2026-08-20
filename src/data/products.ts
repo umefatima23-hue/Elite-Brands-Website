@@ -64,7 +64,11 @@ const mk = (
   categoryLabel,
   originalPrice,
   salePrice,
-  images: [`ph-${brand.hue}-${i}`, `ph-${(brand.hue + 30) % 360}-${i}`, `ph-${(brand.hue + 60) % 360}-${i}`],
+  images: [
+    `ph-${brand.hue}-${i}`,
+    `ph-${(brand.hue + 30) % 360}-${i}`,
+    `ph-${(brand.hue + 60) % 360}-${i}`,
+  ],
   fabric: "100% Pure Printed Lawn",
   included: ["Shirt Front & Back (2.5m)", "Printed Dupatta (2.5m)", "Dyed Trouser (2.5m)"],
   inStock: true,
@@ -75,22 +79,32 @@ const mk = (
 });
 
 export const PRODUCTS: Product[] = [
-  mk(1, "Rosewood Bloom", BRANDS[0], "luxury-lawn", "Luxury Lawn", 12500, 6490, { isOutlet: true, isNew: true }),
+  mk(1, "Rosewood Bloom", BRANDS[0], "luxury-lawn", "Luxury Lawn", 12500, 6490, {
+    isOutlet: true,
+    isNew: true,
+  }),
   mk(2, "Azure Mirage", BRANDS[1], "printed", "Printed Lawn", 8900, 4450, { isOutlet: true }),
   mk(3, "Marigold Court", BRANDS[2], "unstitched", "Unstitched", 7500, 3990, { isNew: true }),
   mk(4, "Ivory Meadow", BRANDS[3], "embroidered", "Embroidered", 15900, 8950, { isOutlet: true }),
   mk(5, "Amber Trellis", BRANDS[4], "luxury-lawn", "Luxury Lawn", 13500, 7290, { isNew: true }),
   mk(6, "Emerald Verse", BRANDS[5], "printed", "Printed Lawn", 9200, 4600, { isOutlet: true }),
   mk(7, "Saffron Sonata", BRANDS[0], "printed", "Printed Lawn", 8200, 3990, { isOutlet: true }),
-  mk(8, "Blush Reverie", BRANDS[1], "unstitched", "Unstitched", 6900, 3450 ),
-  mk(9, "Midnight Garden", BRANDS[2], "luxury-lawn", "Luxury Lawn", 14500, 7990, { isOutlet: true, isNew: true }),
+  mk(8, "Blush Reverie", BRANDS[1], "unstitched", "Unstitched", 6900, 3450),
+  mk(9, "Midnight Garden", BRANDS[2], "luxury-lawn", "Luxury Lawn", 14500, 7990, {
+    isOutlet: true,
+    isNew: true,
+  }),
   mk(10, "Peach Sonnet", BRANDS[3], "printed", "Printed Lawn", 8500, 4290, { isNew: true }),
-  mk(11, "Tangerine Whisper", BRANDS[4], "embroidered", "Embroidered", 16500, 9490, { isOutlet: true }),
-  mk(12, "Jade Reverie", BRANDS[5], "unstitched", "Unstitched", 7900, 3990 ),
-  mk(13, "Coral Solstice", BRANDS[0], "embroidered", "Embroidered", 17500, 9990, { isOutlet: true }),
+  mk(11, "Tangerine Whisper", BRANDS[4], "embroidered", "Embroidered", 16500, 9490, {
+    isOutlet: true,
+  }),
+  mk(12, "Jade Reverie", BRANDS[5], "unstitched", "Unstitched", 7900, 3990),
+  mk(13, "Coral Solstice", BRANDS[0], "embroidered", "Embroidered", 17500, 9990, {
+    isOutlet: true,
+  }),
   mk(14, "Lilac Prelude", BRANDS[1], "luxury-lawn", "Luxury Lawn", 12900, 6790, { isNew: true }),
   mk(15, "Sepia Nocturne", BRANDS[2], "printed", "Printed Lawn", 7800, 3890, { isOutlet: true }),
-  mk(16, "Champagne Dune", BRANDS[3], "unstitched", "Unstitched", 6500, 3290 ),
+  mk(16, "Champagne Dune", BRANDS[3], "unstitched", "Unstitched", 6500, 3290),
 ];
 
 export function getProductBySlug(slug: string) {

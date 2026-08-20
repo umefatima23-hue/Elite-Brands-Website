@@ -47,7 +47,9 @@ const RANGE_OPTIONS = [
 ] as const;
 
 type Load<T> =
-  { status: "loading" } | { status: "error"; message: string } | { status: "ready"; data: T };
+  | { status: "loading" }
+  | { status: "error"; message: string }
+  | { status: "ready"; data: T };
 
 const ORDER_STATUS_LABELS: Record<string, string> = {
   draft: "Draft",

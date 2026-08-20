@@ -62,21 +62,39 @@ export function ShopFilters({ value, onChange, resultCount }: Props) {
         label="Brand"
         value={value.brand}
         onChange={(v) => set("brand", v)}
-        options={[{ value: "all", label: "All brands" }, ...BRANDS.map((b) => ({ value: b.slug, label: b.name }))]}
+        options={[
+          { value: "all", label: "All brands" },
+          ...BRANDS.map((b) => ({ value: b.slug, label: b.name })),
+        ]}
       />
 
       <FilterSelect
         label="Category"
         value={value.category}
         onChange={(v) => set("category", v)}
-        options={[{ value: "all", label: "All categories" }, ...CATEGORIES.map((c) => ({ value: c.slug, label: c.label }))]}
+        options={[
+          { value: "all", label: "All categories" },
+          ...CATEGORIES.map((c) => ({ value: c.slug, label: c.label })),
+        ]}
       />
 
-      <FilterSelect label="Price" value={value.price} onChange={(v) => set("price", v)} options={PRICES} />
-      <FilterSelect label="Sort by" value={value.sort} onChange={(v) => set("sort", v)} options={SORTS} />
+      <FilterSelect
+        label="Price"
+        value={value.price}
+        onChange={(v) => set("price", v)}
+        options={PRICES}
+      />
+      <FilterSelect
+        label="Sort by"
+        value={value.sort}
+        onChange={(v) => set("sort", v)}
+        options={SORTS}
+      />
 
       <div className="flex items-center justify-between border-t border-border pt-3">
-        <p className="text-xs text-muted-foreground">{resultCount} product{resultCount === 1 ? "" : "s"}</p>
+        <p className="text-xs text-muted-foreground">
+          {resultCount} product{resultCount === 1 ? "" : "s"}
+        </p>
         {dirty && (
           <button
             type="button"

@@ -24,7 +24,11 @@ function CartPage() {
   if (detailedItems.length === 0) {
     return (
       <AppShell>
-        <PageHeader eyebrow="Bag" title="Your Cart is Empty" description="Browse our premium outlet and add your first article." />
+        <PageHeader
+          eyebrow="Bag"
+          title="Your Cart is Empty"
+          description="Browse our premium outlet and add your first article."
+        />
         <Container className="py-10 text-center">
           <Link
             to="/shop"
@@ -49,7 +53,11 @@ function CartPage() {
                 className="grid grid-cols-[96px_1fr_auto] gap-4 rounded-lg border border-border bg-card p-4 shadow-elite-sm sm:grid-cols-[120px_1fr_auto]"
               >
                 <Link to="/product/$slug" params={{ slug: product.slug }}>
-                  <ProductImage hue={product.colorHue} label={product.brand} aspect="aspect-[3/4]" />
+                  <ProductImage
+                    hue={product.colorHue}
+                    label={product.brand}
+                    aspect="aspect-[3/4]"
+                  />
                 </Link>
                 <div className="min-w-0">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">

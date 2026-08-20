@@ -13,7 +13,11 @@ import { buildMeta, canonical } from "@/lib/seo";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
-    meta: buildMeta({ title: "Contact", description: "Contact Elite Brands customer care.", path: "/contact" }),
+    meta: buildMeta({
+      title: "Contact",
+      description: "Contact Elite Brands customer care.",
+      path: "/contact",
+    }),
     links: canonical("/contact"),
   }),
   component: ContactPage,
@@ -22,7 +26,11 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   return (
     <AppShell>
-      <PageHeader eyebrow="Reach us" title="Contact" description="We reply within a few hours, seven days a week." />
+      <PageHeader
+        eyebrow="Reach us"
+        title="Contact"
+        description="We reply within a few hours, seven days a week."
+      />
       <Container className="py-14">
         <div className="grid gap-10 lg:grid-cols-[1fr_360px]">
           <form
@@ -39,7 +47,9 @@ function ContactPage() {
             </div>
             <Row label="Subject" name="subject" />
             <div>
-              <Label htmlFor="message" className="mb-1.5 block text-xs">Message *</Label>
+              <Label htmlFor="message" className="mb-1.5 block text-xs">
+                Message *
+              </Label>
               <Textarea id="message" name="message" required rows={6} />
             </div>
             <button

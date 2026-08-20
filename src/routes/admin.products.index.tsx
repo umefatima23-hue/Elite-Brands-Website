@@ -14,13 +14,7 @@ import { EmptyState, StatusBadge } from "@/components/admin/ui";
 import { Button } from "@/ui/button";
 import { Input } from "@/ui/input";
 import { Checkbox } from "@/ui/checkbox";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/ui/select";
 
 export const Route = createFileRoute("/admin/products/")({
   head: () => ({
@@ -35,12 +29,54 @@ export const Route = createFileRoute("/admin/products/")({
 });
 
 const products = [
-  { id: "P-1001", name: "Obsidian Silk Trench", brand: "Maison Noir", price: "€1,890", stock: 12, status: "published" as const },
-  { id: "P-1002", name: "Ivory Cashmere Coat", brand: "Rive Blanche", price: "€2,340", stock: 3, status: "low" as const },
-  { id: "P-1003", name: "Gilded Leather Loafers", brand: "Aurum", price: "€780", stock: 24, status: "published" as const },
-  { id: "P-1004", name: "Onyx Tuxedo Jacket", brand: "Maison Noir", price: "€3,120", stock: 0, status: "draft" as const },
-  { id: "P-1005", name: "Champagne Silk Slip", brand: "Rive Blanche", price: "€640", stock: 18, status: "published" as const },
-  { id: "P-1006", name: "Vintage Gold Cufflinks", brand: "Aurum", price: "€420", stock: 40, status: "published" as const },
+  {
+    id: "P-1001",
+    name: "Obsidian Silk Trench",
+    brand: "Maison Noir",
+    price: "€1,890",
+    stock: 12,
+    status: "published" as const,
+  },
+  {
+    id: "P-1002",
+    name: "Ivory Cashmere Coat",
+    brand: "Rive Blanche",
+    price: "€2,340",
+    stock: 3,
+    status: "low" as const,
+  },
+  {
+    id: "P-1003",
+    name: "Gilded Leather Loafers",
+    brand: "Aurum",
+    price: "€780",
+    stock: 24,
+    status: "published" as const,
+  },
+  {
+    id: "P-1004",
+    name: "Onyx Tuxedo Jacket",
+    brand: "Maison Noir",
+    price: "€3,120",
+    stock: 0,
+    status: "draft" as const,
+  },
+  {
+    id: "P-1005",
+    name: "Champagne Silk Slip",
+    brand: "Rive Blanche",
+    price: "€640",
+    stock: 18,
+    status: "published" as const,
+  },
+  {
+    id: "P-1006",
+    name: "Vintage Gold Cufflinks",
+    brand: "Aurum",
+    price: "€420",
+    stock: 40,
+    status: "published" as const,
+  },
 ];
 
 function ProductsPage() {
@@ -51,10 +87,16 @@ function ProductsPage() {
       description="Curate every piece that appears in the boutique."
       actions={
         <>
-          <Button variant="outline" className="border-foreground/20 hover:border-gold hover:text-gold-deep">
+          <Button
+            variant="outline"
+            className="border-foreground/20 hover:border-gold hover:text-gold-deep"
+          >
             Import
           </Button>
-          <Button asChild className="bg-gradient-gold text-gold-foreground shadow-luxe hover:opacity-95">
+          <Button
+            asChild
+            className="bg-gradient-gold text-gold-foreground shadow-luxe hover:opacity-95"
+          >
             <Link to="/admin/products/new">
               <Plus className="mr-1 h-4 w-4" /> New product
             </Link>
@@ -138,19 +180,27 @@ function ProductsPage() {
                 </div>
                 <div className="min-w-0">
                   <p className="truncate font-medium text-foreground">{p.name}</p>
-                  <p className="mt-0.5 truncate font-mono text-xs text-muted-foreground">
-                    {p.id}
-                  </p>
+                  <p className="mt-0.5 truncate font-mono text-xs text-muted-foreground">{p.id}</p>
                 </div>
               </div>
               <span className="hidden text-sm text-muted-foreground md:inline">{p.brand}</span>
               <span className="hidden font-medium text-foreground md:inline">{p.price}</span>
               <span className="hidden text-sm md:inline">
-                <span className={p.stock === 0 ? "text-destructive" : p.stock < 5 ? "text-amber-600" : "text-foreground"}>
+                <span
+                  className={
+                    p.stock === 0
+                      ? "text-destructive"
+                      : p.stock < 5
+                        ? "text-amber-600"
+                        : "text-foreground"
+                  }
+                >
                   {p.stock}
                 </span>
               </span>
-              <span className="hidden md:inline"><StatusBadge status={p.status} /></span>
+              <span className="hidden md:inline">
+                <StatusBadge status={p.status} />
+              </span>
               <Button variant="ghost" size="icon" aria-label="Row actions">
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
@@ -160,7 +210,9 @@ function ProductsPage() {
           <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border bg-secondary/40 px-4 py-3 text-sm text-muted-foreground">
             <span>Showing 1–6 of 486</span>
             <div className="flex items-center gap-1">
-              <Button variant="outline" size="icon" className="h-8 w-8"><ChevronLeft className="h-4 w-4" /></Button>
+              <Button variant="outline" size="icon" className="h-8 w-8">
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
               {[1, 2, 3, 4].map((n) => (
                 <Button
                   key={n}
@@ -171,7 +223,9 @@ function ProductsPage() {
                   {n}
                 </Button>
               ))}
-              <Button variant="outline" size="icon" className="h-8 w-8"><ChevronRight className="h-4 w-4" /></Button>
+              <Button variant="outline" size="icon" className="h-8 w-8">
+                <ChevronRight className="h-4 w-4" />
+              </Button>
             </div>
           </div>
         </div>

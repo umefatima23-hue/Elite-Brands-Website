@@ -38,7 +38,10 @@ const POLICIES: Record<string, PolicyDoc> = {
       },
       {
         heading: "6. Your Rights",
-        body: "You may request access, correction or deletion of your personal data at any time by contacting us at " + siteConfig.email + ".",
+        body:
+          "You may request access, correction or deletion of your personal data at any time by contacting us at " +
+          siteConfig.email +
+          ".",
       },
       {
         heading: "7. Contact",
@@ -50,10 +53,22 @@ const POLICIES: Record<string, PolicyDoc> = {
     title: "Terms & Conditions",
     eyebrow: "The fine print",
     sections: [
-      { heading: "1. Orders", body: "All orders are subject to availability and confirmation. We reserve the right to cancel orders in case of pricing errors or stock unavailability." },
-      { heading: "2. Prices & Payment", body: "Prices are listed in PKR and include applicable taxes. Cash on Delivery is currently our primary payment method." },
-      { heading: "3. Delivery", body: "Orders are typically dispatched within 1–3 business days. Delivery times vary by city. We are not liable for courier delays." },
-      { heading: "4. Ownership", body: "All content, imagery and brand names are the property of Elite Brands or the respective brand owners." },
+      {
+        heading: "1. Orders",
+        body: "All orders are subject to availability and confirmation. We reserve the right to cancel orders in case of pricing errors or stock unavailability.",
+      },
+      {
+        heading: "2. Prices & Payment",
+        body: "Prices are listed in PKR and include applicable taxes. Cash on Delivery is currently our primary payment method.",
+      },
+      {
+        heading: "3. Delivery",
+        body: "Orders are typically dispatched within 1–3 business days. Delivery times vary by city. We are not liable for courier delays.",
+      },
+      {
+        heading: "4. Ownership",
+        body: "All content, imagery and brand names are the property of Elite Brands or the respective brand owners.",
+      },
     ],
   },
   shipping: {
@@ -61,18 +76,36 @@ const POLICIES: Record<string, PolicyDoc> = {
     eyebrow: "Delivery",
     sections: [
       { heading: "Dispatch", body: "Orders are dispatched within 1–3 business days from Karachi." },
-      { heading: "Delivery Time", body: "3–5 business days to major cities; 5–7 business days for remote areas." },
-      { heading: "Charges", body: "Shipping is free on orders over PKR 5,000. A flat PKR 250 charge applies otherwise." },
-      { heading: "Tracking", body: "You'll receive a WhatsApp update with your tracking number once your order ships." },
+      {
+        heading: "Delivery Time",
+        body: "3–5 business days to major cities; 5–7 business days for remote areas.",
+      },
+      {
+        heading: "Charges",
+        body: "Shipping is free on orders over PKR 5,000. A flat PKR 250 charge applies otherwise.",
+      },
+      {
+        heading: "Tracking",
+        body: "You'll receive a WhatsApp update with your tracking number once your order ships.",
+      },
     ],
   },
   returns: {
     title: "Returns & Exchange",
     eyebrow: "Peace of mind",
     sections: [
-      { heading: "Eligibility", body: "Unstitched articles may be exchanged within 7 days of delivery, provided the packaging is unopened." },
-      { heading: "Non-returnable", body: "Stitched, altered or washed articles cannot be returned." },
-      { heading: "How", body: "Contact us on WhatsApp with your order number to initiate an exchange." },
+      {
+        heading: "Eligibility",
+        body: "Unstitched articles may be exchanged within 7 days of delivery, provided the packaging is unopened.",
+      },
+      {
+        heading: "Non-returnable",
+        body: "Stitched, altered or washed articles cannot be returned.",
+      },
+      {
+        heading: "How",
+        body: "Contact us on WhatsApp with your order number to initiate an exchange.",
+      },
     ],
   },
 };
@@ -111,7 +144,12 @@ function PolicyPage() {
             </section>
           ))}
           <p className="pt-8 text-xs text-muted-foreground">
-            Last updated: {new Date().toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" })}
+            Last updated:{" "}
+            {new Date().toLocaleDateString("en-GB", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
           </p>
         </div>
       </Container>

@@ -145,7 +145,10 @@ export interface AdminOrderDetail extends AdminOrderListItem {
 }
 
 export type AdminOrdersErrorCode =
-  "PERMISSION_DENIED" | "NOT_FOUND" | "DATABASE_ERROR" | "NETWORK_ERROR";
+  | "PERMISSION_DENIED"
+  | "NOT_FOUND"
+  | "DATABASE_ERROR"
+  | "NETWORK_ERROR";
 
 export interface AdminOrdersError {
   code: AdminOrdersErrorCode;

@@ -27,8 +27,8 @@ export function Hero() {
           </h1>
           <span className="gold-rule mt-6" />
           <p className="mt-5 max-w-xl text-sm sm:text-base md:text-lg text-primary/80">
-            The season's most coveted Pakistani unstitched printed lawn — Sana Safinaz,
-            Gul Ahmed, Khaadi, Maria B., Asim Jofa &amp; Elan — at up to 60% off.
+            The season's most coveted Pakistani unstitched printed lawn — Sana Safinaz, Gul Ahmed,
+            Khaadi, Maria B., Asim Jofa &amp; Elan — at up to 60% off.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link

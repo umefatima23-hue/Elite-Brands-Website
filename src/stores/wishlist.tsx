@@ -1,4 +1,12 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
+} from "react";
 import { STORAGE_KEYS } from "@/constants";
 
 interface WishlistContextValue {
@@ -18,7 +26,9 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
     try {
       const raw = window.localStorage.getItem(STORAGE_KEYS.wishlist);
       if (raw) setIds(JSON.parse(raw));
-    } catch {}
+    } catch (error) {
+      console.warn("LocalStorage operation failed for wishlist:", error);
+    }
     setHydrated(true);
   }, []);
 
@@ -26,7 +36,9 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
     if (!hydrated) return;
     try {
       window.localStorage.setItem(STORAGE_KEYS.wishlist, JSON.stringify(ids));
-    } catch {}
+    } catch (error) {
+      console.warn("LocalStorage operation failed for wishlist:", error);
+    }
   }, [ids, hydrated]);
 
   const toggle = useCallback((id: string) => {

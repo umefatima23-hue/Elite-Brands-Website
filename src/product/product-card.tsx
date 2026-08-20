@@ -79,9 +79,7 @@ export function ProductCard({ product }: { product: Product }) {
           )}
         </div>
         {saved > 0 && (
-          <p className="mt-0.5 text-[11px] font-medium text-gold">
-            Save {formatPrice(saved)}
-          </p>
+          <p className="mt-0.5 text-[11px] font-medium text-gold">Save {formatPrice(saved)}</p>
         )}
 
         <div className="mt-4 grid grid-cols-2 gap-2">

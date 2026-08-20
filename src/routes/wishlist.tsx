@@ -27,8 +27,13 @@ function WishlistPage() {
         {items.length === 0 ? (
           <div className="rounded-lg border border-dashed border-border bg-surface/60 p-12 text-center">
             <Heart className="mx-auto mb-4 h-8 w-8 text-gold" />
-            <p className="text-sm text-muted-foreground">Your wishlist is empty. Tap the heart on any product to save it here.</p>
-            <Link to="/shop" className="mt-6 inline-flex items-center rounded-md bg-primary px-6 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary-foreground hover:bg-primary/90">
+            <p className="text-sm text-muted-foreground">
+              Your wishlist is empty. Tap the heart on any product to save it here.
+            </p>
+            <Link
+              to="/shop"
+              className="mt-6 inline-flex items-center rounded-md bg-primary px-6 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-primary-foreground hover:bg-primary/90"
+            >
               Explore Shop
             </Link>
           </div>

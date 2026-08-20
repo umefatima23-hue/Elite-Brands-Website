@@ -25,11 +25,7 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
 
   return (
     <div className="md:hidden fixed inset-0 z-50" role="dialog" aria-modal="true">
-      <div
-        className="absolute inset-0 bg-foreground/40"
-        onClick={onClose}
-        aria-hidden="true"
-      />
+      <div className="absolute inset-0 bg-foreground/40" onClick={onClose} aria-hidden="true" />
       <aside className="absolute inset-y-0 left-0 w-[82%] max-w-sm bg-background shadow-elite-lg flex flex-col">
         <div className="flex items-center justify-between border-b border-border px-5 h-16">
           <span className="font-display text-xl">

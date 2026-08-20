@@ -117,9 +117,7 @@ export function SectionCard({
       <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0">
         <div className="min-w-0">
           <CardTitle className="font-serif text-xl text-foreground">{title}</CardTitle>
-          {description && (
-            <p className="mt-1 text-sm text-muted-foreground">{description}</p>
-          )}
+          {description && <p className="mt-1 text-sm text-muted-foreground">{description}</p>}
         </div>
         {action && <div className="shrink-0">{action}</div>}
       </CardHeader>
@@ -145,9 +143,7 @@ export function EmptyState({
         <Icon className="h-7 w-7 text-gold" aria-hidden />
       </div>
       <h3 className="mt-5 font-serif text-xl text-foreground">{title}</h3>
-      {description && (
-        <p className="mt-2 max-w-sm text-sm text-muted-foreground">{description}</p>
-      )}
+      {description && <p className="mt-2 max-w-sm text-sm text-muted-foreground">{description}</p>}
       {action && <div className="mt-6">{action}</div>}
     </div>
   );
@@ -155,8 +151,10 @@ export function EmptyState({
 
 export function TableRowSkeleton({ cols = 5 }: { cols?: number }) {
   return (
-    <div className="grid items-center gap-4 border-b border-border px-4 py-4"
-      style={{ gridTemplateColumns: `repeat(${cols}, minmax(0,1fr))` }}>
+    <div
+      className="grid items-center gap-4 border-b border-border px-4 py-4"
+      style={{ gridTemplateColumns: `repeat(${cols}, minmax(0,1fr))` }}
+    >
       {Array.from({ length: cols }).map((_, i) => (
         <Skeleton key={i} className="h-4 w-full" />
       ))}
@@ -196,7 +194,12 @@ export function ChartPlaceholder({ height = 260, label }: { height?: number; lab
         />
       </svg>
       <div className="pointer-events-none absolute inset-x-0 bottom-3 flex justify-between px-4 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-        <span>Jan</span><span>Mar</span><span>May</span><span>Jul</span><span>Sep</span><span>Nov</span>
+        <span>Jan</span>
+        <span>Mar</span>
+        <span>May</span>
+        <span>Jul</span>
+        <span>Sep</span>
+        <span>Nov</span>
       </div>
     </div>
   );
